@@ -49,17 +49,36 @@ describe("Navigation", () => {
     );
   });
   describe("From the favourites page to a movie's details", () => {
-    // TODO
-  });
-  describe("The forward/backward links", () => {
     beforeEach(() => {
-      cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+        cy.get("button[aria-label='add to favorites']").eq(1).click();
+        cy.get("button[aria-label='add to favorites']").eq(3).click();
+        cy.get("button").contains("Favorites").click();
+      });
+      it("selected movie card shows the red heart in favourite page", () => {
+        cy.get(".MuiCardHeader-content").should("have.length", 2);
+        cy.get(".MuiCardHeader-content")
+          .eq(0)
+          .find("p")
+          .contains(movies[1].title);
+        cy.get(".MuiCardHeader-content")
+          .eq(1)
+          .find("p")
+          .contains(movies[3].title);
+      });
+      it("navigates to the movie details page ", () => {
+        cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+      });
     });
-    it("navigates between the movies detail page and the Home page.", () => {
-      cy.get("svg[data-testid='ArrowBackIcon'").click();
-      cy.url().should("not.include", `/movies/${movies[0].id}`);
-      cy.get("svg[data-testid='ArrowForwardIcon'").click();
-      cy.url().should("include", `/movies/${movies[0].id}`);
+    describe("The forward/backward links", () => {
+        beforeEach(() => {
+          cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+        });
+        it("navigates between the movies detail page and the Home page.", () => {
+          cy.get("svg[data-testid='ArrowBackIcon'").click();
+          cy.url().should("not.include", `/movies/${movies[0].id}`);
+          cy.get("svg[data-testid='ArrowForwardIcon'").click();
+          cy.url().should("include", `/movies/${movies[0].id}`);
+        });
+      });
     });
-  });
-});
+
