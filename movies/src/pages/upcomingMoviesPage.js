@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
-import { getMovies } from "../api/tmdb-api";
+import { getupcomingMovies } from "../api/tmdb-api";
 
-const HomePage = (props) => {
+const UpcomingPage = (props) => {
   
   const [movies, setMovies] = useState([]);
   const favorites = movies.filter(m => m.favorite)
@@ -16,17 +16,17 @@ const HomePage = (props) => {
   };
 
   useEffect(() => {
-    getMovies().then(movies => {
+    getupcomingMovies().then(movies => {
       setMovies(movies);
     });
   }, []);
   
   return (
     <PageTemplate
-      title='Discover Movies'
+      title='Upcoming Movies'
       movies={movies}
       selectFavorite={addToFavorites}
     />
   );
 };
-export default HomePage;
+export default UpcomingPage;
