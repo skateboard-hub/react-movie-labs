@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import {createRoot} from 'react-dom/client';
+import MoviesContextProvider from "./contexts/moviesContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,13 +21,13 @@ const queryClient = new QueryClient({
     },
   },
 });
-
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      <SiteHeader />
-      <Routes>
+        <SiteHeader />
+        <MoviesContextProvider>
+        <Routes>
         <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
         <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
@@ -34,11 +35,11 @@ const App = () => {
         <Route path="*" element={ <Navigate to="/" /> } />
         <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
       </Routes>
+        </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
 
-const rootElement = createRoot(  document.getElementById("root") )
-rootElement.render(<App />);
+ReactDOM.render(<App />, document.getElementById("root"));
