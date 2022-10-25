@@ -46,7 +46,8 @@ image: cypress/browsers:node12.14.1-chrome85-ff81
 stage: test
 script:
   - echo "Run tests in headless mode"
+  - cd movies
   - npm run start:ci
-  
+
 
   
