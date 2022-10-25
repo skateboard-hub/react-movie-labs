@@ -12,7 +12,7 @@ install_dependencies:
     - npm ci
   artifacts:
     paths:
-      - node_modules/
+      - movies/node_modules/
 
 bundle_app:
   stage: build
