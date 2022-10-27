@@ -4,8 +4,9 @@ image: node:latest
 stages:
   - install
   - build
-  - test
   - exercise
+  - test
+  
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/movies/.npm"
@@ -40,6 +41,14 @@ bundle_app:
     paths:
       - movies/build/
 
+exercise_job:
+  stage: 
+    - exercise
+  only:
+    - main
+  script:
+    - echo "Run exercise_job"
+
 #e2etest:
   # Node docker image with Cypress and Chrome pre-installed
   #image: cypress/browsers:node12.14.1-chrome85-ff81
@@ -49,13 +58,7 @@ bundle_app:
     # - echo "Run tests in headless mode"
     # - npm run start:ci
 
-exercise_job:
-  stage: 
-    - exercise
-  only:
-    - main
-  script:
-    - echo "Run exercise_job"
+
 
 build_jobX:
   stage: build
