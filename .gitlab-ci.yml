@@ -48,3 +48,4 @@ e2etest:
     - echo "Run tests in headless mode"
     - npm run start:ci
 
+
