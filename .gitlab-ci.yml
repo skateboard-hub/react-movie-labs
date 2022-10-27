@@ -16,7 +16,7 @@ cache:
         - movies/package.json
    paths:
       - movies/.npm
-      - movies//Cypress
+      - movies/Cypress
       - movies/node_modules
 
 
