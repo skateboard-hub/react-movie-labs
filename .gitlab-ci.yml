@@ -7,17 +7,17 @@ stages:
   - test
 
 variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  npm_config_cache: "$CI_PROJECT_DIR/movies/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/movies/Cypress"
 
 cache:
    key:
      files:
-        - package.json
+        - movies/package.json
    paths:
-      - .npm
-      - cache/Cypress
-      - node_modules
+      - movies/.npm
+      - movies//Cypress
+      - movies/node_modules
 
 
 # Jobs 
@@ -37,7 +37,8 @@ bundle_app:
     - npm run build
   artifacts:
     paths:
-      - build/
+      
+      - movies/build/
 
 
 e2etest:
