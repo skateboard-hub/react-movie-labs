@@ -5,6 +5,7 @@ stages:
   - install
   - build
   - test
+  - exercise
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/movies/.npm"
@@ -48,6 +49,13 @@ bundle_app:
     # - echo "Run tests in headless mode"
     # - npm run start:ci
 
+exercise_job:
+  stage: 
+    - exercise
+  only:
+    - main
+  script:
+    - echo "Run exercise_job"
 
 build_jobX:
   stage: build
