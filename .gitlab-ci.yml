@@ -37,7 +37,6 @@ bundle_app:
     - npm run build
   artifacts:
     paths:
-      
       - movies/build/
 
 
