@@ -49,7 +49,7 @@ exercise_job:
     - echo "Run exercise_job"
 
 e2etest:
-  Node docker image with Cypress and Chrome pre-installed
+  # Node docker image with Cypress and Chrome pre-installed
   image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: test
   script:
@@ -57,7 +57,7 @@ e2etest:
     - echo "Run tests in headless mode"
     - npm run start:ci
 
-
+git 
 
 build_jobX:
   stage: build
