@@ -11,6 +11,7 @@ export const getMovies = () => {
      throw error
   });
 };
+
 export const getMovie = (args) => {
   // console.log(args)
   const [, idPart] = args.queryKey;
